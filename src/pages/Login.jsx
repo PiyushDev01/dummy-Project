@@ -9,7 +9,7 @@ import { Navigate } from 'react-router-dom';
 
 const Login = () => {
   const { user } = useContext(MyContext);
-  const [isloding, setisloding] = useState(false);
+  const [isloding, setisloding] = useState(false); 
 
   const signInWithGoogle = async () => {
     setisloding(true);
@@ -27,6 +27,7 @@ const Login = () => {
 
   return (
     <div>
+    
       {
         user && <Navigate to="/" />
       }
