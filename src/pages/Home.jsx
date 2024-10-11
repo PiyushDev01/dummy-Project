@@ -31,6 +31,9 @@ function Home() {
     <button onClick={() => navigate('/order')}  className=' m-1 py-1 rounded-full '>
         order
     </button>
+    <button onClick={() => navigate('/admin')}  className=' m-1 py-1 rounded-full '>
+        admin
+    </button>
     
     <br />
     <button onClick={logout}>logout</button>

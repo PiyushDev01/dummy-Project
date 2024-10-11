@@ -73,6 +73,28 @@ const existingorder = async (user) => {
   return false;
 };
 
+const getAllOrders = async () => {
+  
+
+  try {
+    // Query the "orders" collection for orders by the user's UID
+    const ordersQuery = query(
+      collection(db, "orders")
+    );
+
+    const querySnapshot = await getDocs(ordersQuery);
+    const ordersList = querySnapshot.docs.map((doc) => ({
+      id: doc.id, // Get the document ID
+      ...doc.data(), // Spread the rest of the order data
+    }));
+
+    return ordersList; // Return the array of orders
+
+  } catch (error) {
+    console.error("Error fetching user orders: ", error);
+    return [];
+  }
+};
 const getUserOrders = async (user) => {
   if (!user || !user.uid) {
     console.error("Invalid user data. UID is required.");
@@ -99,4 +121,16 @@ const getUserOrders = async (user) => {
   }
 };
 
-export { addOrder, addUserWithId, existingorder, getUserOrders };
+const changeStatus = async (status, orderid) => {
+  try {
+    await setDoc(doc(db, "orders", orderid), {
+      status: status,
+    }, { merge: true });
+    console.log("Document successfully updated!");
+    
+  } catch (e) {
+    console.error("Error updating document: ", e);
+  }
+}
+
+export { addOrder, addUserWithId, existingorder, getUserOrders, getAllOrders, changeStatus };

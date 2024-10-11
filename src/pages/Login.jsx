@@ -7,6 +7,7 @@ import {addUserWithId} from '../firebase/crudfun.js/writeData';
 import { Navigate } from 'react-router-dom';
 
 
+
 const Login = () => {
   const { user } = useContext(MyContext);
   const [isloding, setisloding] = useState(false); 
@@ -18,6 +19,7 @@ const Login = () => {
       const user = result.user;
       console.log("User info:", user);
       addUserWithId(user);
+     
      
     } catch (error) {
       console.error("Error during sign-in:", error);

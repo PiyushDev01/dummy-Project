@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Order from "./pages/Order";
 import ProtectedRoute from "./context/ProtectedRoutes";
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -32,6 +33,15 @@ function App() {
               <ProtectedRoute>
                 {" "}
                 <Home />{" "}
+              </ProtectedRoute>
+            }
+          />
+                    <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                {" "}
+                <Admin />{" "}
               </ProtectedRoute>
             }
           />
