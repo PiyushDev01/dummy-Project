@@ -40,10 +40,11 @@ const addOrder = async (order, user) => {
     const docRef = await addDoc(collection(db, "orders"), {
       orderBy: order.name || "Anonymous", // Handle if name is missing
       user: user.uid, // Store the user ID to link the order with the user
-      userName: user.displayName, // Store the user name to display in the order
+      userName: user.displayName,
+      email: user.email , // Store the user name to display in the order
       createdAt: new Date(), // Optional, add a timestamp for
       ...order, // Spread the rest of the order data
-      status: "pending 🔃", // Optional, set a default status
+      status: "pending", // Optional, set a default status
     });
 
     console.log("Order document successfully written with ID: ", docRef.id);

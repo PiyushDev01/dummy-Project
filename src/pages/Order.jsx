@@ -49,7 +49,7 @@ const Order = () => {
   // Function to render content based on the state
   const renderContent = () => {
     if (isLoading) {
-      return <div className=" w-8 h-8 animate-spin border-t-4 rounded-full  border-purple-700 "></div> ;
+      return <center><div className=" m-8 w-8 h-8 animate-spin border-t-4 rounded-full  border-purple-700 "></div> </center> ;
     }
 
     if (orderExists) {

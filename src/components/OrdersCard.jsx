@@ -25,16 +25,18 @@ function OrdersCard() {
    <button onClick={()=>{
     setReload(!reload);
    }}  className=' m-4'> Reload</button>
-    <div className="bg-slate-700 rounded-lg min-w-40 w-fit min-h-60 h-fit p-4">
+    <div className="bg-slate-700 rounded-lg min-w-40 w-fit min-h-60 h-fit p-4 ">
       {loading ? (
         <p>Loading orders...</p>
       ) : (
         orders.map((order, index) => (
-          <div key={index} className="bg-zinc-800 m-2 p-2 rounded-lg">
-            <h3>{order.userName}</h3>
-            <h3>{order.order}</h3>
-            <p>{order.status}</p>
-            <p>{order.address}</p>
+          <div key={index} className="bg-zinc-800 m-2 p-2 rounded-lg text-left">
+            <h3>OrderBy: {order.userName}</h3>
+            <h3>Type: {order.order}</h3>
+            <p>Status: {order.status}</p>
+            <p>Address: {order.address}</p>
+            <p>Phone: {order.phone}</p>
+            <p>Email: {order.email}</p>
             <div className="buttonSection">
                 <button onClick={()=>{
                         changeStatus('rejected', order.id);
