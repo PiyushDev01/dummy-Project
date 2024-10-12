@@ -10,7 +10,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase"; // Ensure db is properly imported from your Firebase config
 
-const adminlist = ["piyushvishwakarma6706@gmail.com", "piyushvishwakarma6706@gmail.com"];
+const adminlist = ["piyushvishwakarma6706@gmail.com", "piyushvishwakarma6707@gmail.com"];
 
 const addUserWithId = async (user) => {
   if (!user || !user.uid) {
