@@ -9,6 +9,7 @@ function OrdersCard() {
     useEffect(() => {
         const fetchOrders = async () => {
           try {
+            
             const data = await getAllOrders();
             setOrders(data);
             console.log("Orders:", data);

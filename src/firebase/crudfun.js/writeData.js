@@ -4,10 +4,13 @@ import {
   addDoc,
   collection,
   getDocs,
+  getDoc,
   query,
   where,
 } from "firebase/firestore";
 import { db } from "../firebase"; // Ensure db is properly imported from your Firebase config
+
+const adminlist = ["piyushvishwakarma6706@gmail.com", "piyushvishwakarma6706@gmail.com"];
 
 const addUserWithId = async (user) => {
   if (!user || !user.uid) {
@@ -16,11 +19,13 @@ const addUserWithId = async (user) => {
   }
 
   try {
+    const isadmin = adminlist.includes(user.email);
     // Set user data in Firestore
     await setDoc(doc(db, "users", user.uid), {
       name: user.displayName || "Anonymous", // Handle if displayName is missing
       email: user.email || "No email provided", // Handle if email is missing
-      photoURL: user.photoURL || "", // Optional, empty string if missing
+      photoURL: user.photoURL || "",
+      admin: isadmin, // Optional, empty string if missing
     });
 
     console.log("User document successfully written!");
@@ -134,4 +139,16 @@ const changeStatus = async (status, orderid) => {
   }
 }
 
-export { addOrder, addUserWithId, existingorder, getUserOrders, getAllOrders, changeStatus };
+const checkAdmin = async (user) => {
+  const userRef = doc(db, "users", user.uid);
+
+  const userDoc = await getDoc(userRef);
+  if (userDoc.exists()) {
+    const userData = userDoc.data();
+    console.log("User data:", userData);
+    return userData.admin;
+  }
+  return false;
+}
+
+export { addOrder, addUserWithId, existingorder, getUserOrders, getAllOrders, changeStatus, checkAdmin };
